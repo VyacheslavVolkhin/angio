@@ -2,6 +2,10 @@
 	from {opacity: 0;}
 	to {opacity: 1;}
 }
+@keyframes light {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.1; }
+}
 :root {
 	--clr-att: #2BAFE6;
 	--clr-att-second: #00699C;
@@ -12,6 +16,17 @@
 	--fsizeLarge: 16px;
 	--lhLarge: 1.2;
 	--sectionMargin: 15px;
+}
+html {
+	scroll-behavior: smooth;
+}
+.section-sticky {
+	position: sticky !important;
+	z-index: 110;
+	top: 20px;
+}
+[id^="section"] {
+	scroll-margin-top: 100px;
 }
 .ftext {
 	font-family: "Gotham Pro", sans-serif;
@@ -150,6 +165,7 @@ textarea.form-input {
 }
 .slider-inner-wrap {
 	position: relative;
+	overflow: hidden;
 	.slider-wrap {
 		margin: 0 -15px;
 		position: relative;
@@ -374,6 +390,11 @@ textarea.form-input {
 	background: url(../img/icons/ico.svg) center no-repeat;
 	background-size: 100% auto;
 	cursor: pointer;
+	&.fix-button {
+		position: fixed;
+		bottom: 20px;right: 20px;
+		z-index: 100;
+	}
 }
 .items-wrap {
     display: flex;
@@ -959,6 +980,7 @@ ul.list-att {
 	}
 	&:hover {
 		color: #000;
+		background-color: #E4F4FD;
 		.tile-title {
 			color: var(--clr-att);
 		}
@@ -1063,8 +1085,8 @@ ul.list-att {
 .slider-section-box {
 	position: relative;
 	margin-bottom: var(--sectionMargin);
+	overflow: hidden;
 	&:has(.item-tile-doc) {
-		overflow: visible;
 		.slick-list, .slider, .slider-wrap, .slider-inner-wrap {
 			overflow: visible;
 		}
@@ -1766,13 +1788,27 @@ ul.list-att {
 	}
 }
 @media (min-width: 961px) {
+	.fix-button {
+
+	}
 	.item-tile-step {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		height: 480px;
 		position: relative;
+		.elm-ico {
+			animation: light ease-in-out 2s infinite;
+		}
+		&.tile01 {
+			.elm-ico {
+				animation-delay: 0;
+			}
+		}
 		&.tile02 {
+			.elm-ico {
+				animation-delay: .1s;
+			}
 			.tile-title-wrap {
 				bottom: auto;
 				top: 50%;
@@ -1792,6 +1828,9 @@ ul.list-att {
 			}
 		}
 		&.tile03 {
+			.elm-ico {
+				animation-delay: .2s;
+			}
 			.tile-decor {
 				margin-bottom: -110px;
 			}
@@ -1808,6 +1847,9 @@ ul.list-att {
 			}
 		}
 		&.tile04 {
+			.elm-ico {
+				animation-delay: .3s;
+			}
 			.tile-title-wrap {
 				bottom: auto;
 				top: 50%;
@@ -1823,12 +1865,20 @@ ul.list-att {
 			}
 		}
 		&.tile05 {
+			.elm-ico {
+				animation-delay: .4s;
+			}
 			.tile-title-wrap {
 				width: (360/14em);
 				text-align: right;
 				padding: 0 14px 0 0;
 				left: auto;
 				right: 50%;
+			}
+		}
+		&.tile06 {
+			.elm-ico {
+				animation-delay: .5s;
 			}
 		}
 		.tile-title-wrap {
@@ -2024,6 +2074,12 @@ ul.list-att {
 			.phone-title {
 				margin-bottom: 10px;
 			}
+		}
+	}
+	.elm-helper {
+		&.fix-button {
+			right: 50%;
+			margin-right: -585px;
 		}
 	}
 }
